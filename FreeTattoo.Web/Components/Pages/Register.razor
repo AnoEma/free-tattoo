@@ -1,0 +1,76 @@
+﻿@page "/register"
+@using Domain.Entities
+@rendermode InteractiveServer
+
+<PageTitle>Register</PageTitle>
+
+@*
+<div class="form-container">
+    <form>
+        <input type="text" class="form-field" placeholder="Nome Completo">
+        <input type="number" class="form-field" placeholder="Telefoné">
+        <input type="email" class="form-field" placeholder="Email">
+        <input type="password" class="form-field" placeholder="Senha">
+        <input type="checkbox" class="form-field" ="Aceita receber nós novidades">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+
+<div class="top-row">
+    <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">Se connectar pelo google</a>
+</div>
+
+
+@code {
+
+} *@
+
+<EditForm Model="@customers" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label for="firstName">Nome: </label>
+        <InputText id="firstName" @bind-Value="customers.FirstName" class="form-field" />
+        <ValidationMessage For="() => customers.FirstName" />
+    </p>
+
+    <p>
+        <label for="lastName">SobreNome: </label>
+        <InputText id="lastName" @bind-Value="customers.LastName" class="form-field" />
+        <ValidationMessage For="() => customers.LastName" />
+    </p>
+
+    <p>
+        <label for="phone">Telefone: </label>
+        <InputText id="phone" @bind-Value="customers.PhoneNumber" class="form-field" />
+        <ValidationMessage For="() => customers.PhoneNumber" />
+    </p>
+
+    <p>
+        <label for="email">Email: </label>
+        <InputText id="email" @bind-Value="customers.Email" class="form-field" />
+        <ValidationMessage For="() => customers.Email" />
+    </p>
+
+    <p>
+        <label for="optIn">Nome: </label>
+        <InputCheckbox id="optIn" @bind-Value="customers.OptIn" />
+        <ValidationMessage For="() => customers.OptIn" />
+    </p>
+
+</EditForm>
+
+@code {
+    private Customers customers = new Customers();
+
+    public Register()
+    {
+
+    }
+
+    private void HandleValidSubmit()
+    {
+        var test = customers;
+    }
+}
